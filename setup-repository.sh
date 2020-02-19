@@ -3,18 +3,15 @@
 # AUTHOR: Paulo Monteiro @ New Relic - 2019-04
 #
 
-# create an SSH key
+# create an SSH key -DELETED 
 
-export SSH_KEY_PASSPHRASE='I-will-be-medieval-on-your-SaaS'
-rm -f /home/ec2-user/.ssh/id_rsa
-ssh-keygen -q -t rsa -N "${SSH_KEY_PASSPHRASE}" -f /home/ec2-user/.ssh/id_rsa
 
 # ATTENTION: change variables below
 
-export GITHUB_USER='ThyWoof'
-export GITHUB_USER_NAME='Winston Wolfe'
-export GITHUB_USER_EMAIL='Winston.Wolfe@marsellus.inc.com'
-export GITHUB_REPO=''
+export GITHUB_USER='tpasin'
+export GITHUB_USER_NAME='Thiago Pasin'
+export GITHUB_USER_EMAIL='pasin.thiago@gmail.com'
+export GITHUB_REPO='geek-movie-shop'
 
 # configure git
 

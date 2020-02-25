@@ -3,7 +3,7 @@ services:
   mongodb:
     build:
       context: mongo
-    image: $DOCKERHUB_USER/rs-mongodb:$TAG
+    image: $DOCKERHUB_USER/rs-mongodbMS:$TAG
     networks:
       - geek-shop
     deploy:
@@ -13,7 +13,7 @@ services:
   mysql:
     build:
       context: mysql
-    image: $DOCKERHUB_USER/rs-mysql:$TAG
+    image: $DOCKERHUB_USER/rs-mysqlMS:$TAG
     cap_add:
       - NET_ADMIN
     networks:
@@ -23,7 +23,7 @@ services:
       restart_policy:
         condition: on-failure
   rabbitmq:
-    image: rabbitmq:3.7-management-alpine
+    image: rabbitmq:3.7-managementMS-alpine
     networks:
       - geek-shop
     deploy:
@@ -41,7 +41,7 @@ services:
   catalogue:
     build:
       context: catalogue
-    image: $DOCKERHUB_USER/rs-catalogue:$TAG
+    image: $DOCKERHUB_USER/rs-catalogueMS:$TAG
     depends_on:
       - mongodb
     networks:
@@ -59,7 +59,7 @@ services:
   cart:
     build:
       context: cart
-    image: $DOCKERHUB_USER/rs-cart:$TAG
+    image: $DOCKERHUB_USER/rs-cartMS:$TAG
     depends_on:
       - redis
       - catalogue
@@ -79,7 +79,7 @@ services:
   user:
     build:
       context: user
-    image: $DOCKERHUB_USER/rs-user:$TAG
+    image: $DOCKERHUB_USER/rs-userMS:$TAG
     depends_on:
       - mongodb
       - redis
@@ -99,7 +99,7 @@ services:
   shipping:
     build:
       context: shipping
-    image: $DOCKERHUB_USER/rs-shipping:$TAG
+    image: $DOCKERHUB_USER/rs-shippingMS:$TAG
     depends_on:
       - mysql
       - cart
@@ -119,7 +119,7 @@ services:
   ratings:
     build:
       context: ratings
-    image: $DOCKERHUB_USER/rs-ratings:$TAG
+    image: $DOCKERHUB_USER/rs-ratingsMS:$TAG
     networks:
       - geek-shop
     depends_on:
@@ -139,7 +139,7 @@ services:
   payment:
     build:
       context: payment
-    image: $DOCKERHUB_USER/rs-payment:$TAG
+    image: $DOCKERHUB_USER/rs-paymentMS:$TAG
     depends_on:
       - rabbitmq
       - cart
@@ -161,7 +161,7 @@ services:
   dispatch:
     build:
       context: dispatch
-    image: $DOCKERHUB_USER/rs-dispatch:$TAG
+    image: $DOCKERHUB_USER/rs-dispatchMS:$TAG
     depends_on:
       - rabbitmq
     networks:
@@ -177,7 +177,7 @@ services:
   web:
     build:
       context: web
-    image: $DOCKERHUB_USER/rs-web:$TAG
+    image: $DOCKERHUB_USER/rs-webMS:$TAG
     depends_on:
       - catalogue
       - cart
@@ -205,7 +205,7 @@ services:
   loader:
     build:
       context: loader
-    image: $DOCKERHUB_USER/rs-loader:$TAG
+    image: $DOCKERHUB_USER/rs-loaderMS:$TAG
     depends_on:
       - web
     networks:

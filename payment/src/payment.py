@@ -53,7 +53,7 @@ def pay(id):
     # this will blow up if the cart is not valid
     has_shipping = False
     for item in cart.get('items'):
-        newrelic.agent.add_custom_parameter('dollar', items)
+        newrelic.agent.record_custom_event('dollar', items)
         if item.get('sku') == 'SHIP':
             has_shipping = True
 
@@ -74,6 +74,7 @@ def pay(id):
     # Generate order id
     orderid = str(uuid.uuid4())
     queueOrder({ 'orderid': orderid, 'user': id, 'cart': cart })
+    newrelic.agent.record_custom_event('cart', cart)
 
     # add to order history
     if not anonymous_user:
